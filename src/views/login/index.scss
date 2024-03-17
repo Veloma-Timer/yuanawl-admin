@@ -1,0 +1,70 @@
+.login-container {
+  height: 100%;
+  background-color: #eeeeee;
+  background-image: url("@/assets/images/login.png");
+  background-size: 100% 100%;
+  background-size: cover;
+  .login-box {
+    padding: 40px 60px;
+    border-radius: 10px;
+    display: flex;
+    background: #ffffff;
+    box-shadow: 0 8px 24px 0 rgb(0 0 0 / 15%);
+    .dark {
+      position: absolute;
+      top: 13px;
+      right: 18px;
+    }
+    .login-left {
+      //width: 804px;
+      .login-left-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .login-form {
+      margin: auto;
+      background-color: var(--el-bg-color);
+      .login-logo {
+        margin-bottom: 45px;
+        .login-icon {
+          height: 52px;
+          margin: auto;
+        }
+        .logo-text {
+          padding: 0 0 0 25px;
+          margin: 0;
+          font-size: 42px;
+          font-weight: bold;
+          color: #34495e;
+          white-space: nowrap;
+        }
+      }
+      .el-form-item {
+        margin-bottom: 40px;
+      }
+      .login-btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 40px;
+        white-space: nowrap;
+        .el-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width <= 1250px) {
+  .login-left {
+    display: none;
+  }
+}
+
+@media screen and (width <= 600px) {
+  .login-form {
+    width: 97% !important;
+  }
+}

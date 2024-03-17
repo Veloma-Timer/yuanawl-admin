@@ -1,0 +1,27 @@
+.home {
+  width: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  background-color: #f2f3f5;
+  .home-tab {
+    justify-content: space-between;
+    width: 100%;
+    &:deep(.el-form--inline .el-form-item) {
+      margin-right: 10px;
+    }
+    .tab-list {
+      .tab-list-item {
+        width: 61px;
+        height: 29px;
+        font-size: 12px;
+        line-height: 26px;
+        text-align: center;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(180deg, #e76ba1, #773bb7);
+        //border: 2px solid #be59a9;
+        border-radius: 5px;
+      }
+    }
+  }
+}

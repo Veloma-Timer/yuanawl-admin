@@ -1,0 +1,97 @@
+.wrap {
+  display: flex;
+}
+.left {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--el-border-color-light);
+  .content {
+    .header {
+      display: inline-block;
+    }
+    .sale-echarts {
+      min-width: 100%;
+      min-height: 340px;
+      margin-right: 10px;
+    }
+  }
+}
+.right {
+  position: relative;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--el-border-color-light);
+  padding: 20px;
+  .city-radio {
+    position: absolute;
+    right: 20px;
+  }
+  .sale-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 20px;
+    margin-top: 64px;
+    table {
+      width: 100%;
+    }
+    tr {
+      width: 100%;
+    }
+    td {
+      width: 50%;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 236px;
+      height: 120px;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #ffffff;
+      background: #ffffff;
+      cursor: pointer;
+      .title {
+        margin-right: 20px;
+        text-align: right;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        font-size: 18px;
+        color: #ffffff;
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        margin-top: 10px;
+      }
+    }
+    .item:nth-child(1) {
+      background-image: url("@/assets/images/card-red.png");
+      background-size: 100% 100%;
+    }
+    .item:nth-child(2) {
+      background-image: url("@/assets/images/card-purple.png");
+      background-size: 100% 100%;
+    }
+    .item:nth-child(3) {
+      background-image: url("@/assets/images/card-green.png");
+      background-size: 100% 100%;
+    }
+    .item:nth-child(4) {
+      background-image: url("@/assets/images/card-blue.png");
+      background-size: 100% 100%;
+    }
+  }
+}

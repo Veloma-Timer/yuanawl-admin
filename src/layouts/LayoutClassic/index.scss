@@ -1,0 +1,97 @@
+.el-container {
+  width: 100%;
+  height: 100%;
+  :deep(.el-header) {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    padding: 0 15px 0 0;
+    background-color: #242526;
+    border-bottom: 1px solid var(--el-border-color-light);
+    .header-lf {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+      .logo {
+        flex-shrink: 0;
+        width: 210px;
+        margin-right: 16px;
+        .logo-img {
+          // width: 28px;
+          object-fit: contain;
+          margin-right: 6px;
+        }
+        .logo-text {
+          font-size: 21.5px;
+          font-weight: bold;
+          color: #dadada;
+          white-space: nowrap;
+        }
+      }
+      .tool-bar-lf {
+        .collapse-icon {
+          color: #e5eaf3;
+        }
+        .el-breadcrumb__inner.is-link {
+          color: #e5eaf3;
+          &:hover {
+            color: var(--el-color-primary);
+          }
+        }
+        .el-breadcrumb__item:last-child .el-breadcrumb__inner,
+        .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+          color: #cfd3dc;
+        }
+      }
+    }
+    .header-ri {
+      .tool-bar-ri {
+        .toolBar-icon,
+        .name {
+          color: #e5eaf3;
+        }
+      }
+    }
+  }
+  .classic-content {
+    display: flex;
+    height: calc(100% - 55px);
+    :deep(.el-aside) {
+      width: auto;
+      background-color: var(--el-menu-bg-color);
+      border-right: 1px solid var(--el-border-color-light);
+      .aside-box {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: width 0.3s ease;
+        .el-menu {
+          width: 100%;
+          overflow-x: hidden;
+          border-right: none;
+          --el-menu-active-bg-color: black;
+          --el-menu-active-color: white;
+          --el-menu-item-height: 48px;
+          --el-menu-hover-bg-color: #f6f6f6;
+
+          .el-menu-item {
+            margin-top: 8px;
+            border-radius: 6px;
+            overflow: hidden;
+          }
+
+          .el-menu-item.is-active::before {
+            display: none;
+          }
+        }
+      }
+    }
+    .classic-main {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

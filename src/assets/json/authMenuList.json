@@ -1,0 +1,587 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "path": "/home",
+      "name": "home",
+      "component": "/home/index",
+      "meta": {
+        "icon": "TrendCharts",
+        "title": "首页",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": true,
+        "isKeepAlive": false
+      }
+    },
+    {
+      "path": "/personal-analysis",
+      "name": "personal-analysis",
+      "component": "/personal-analysis/index",
+      "meta": {
+        "title": "员工个人分析",
+        "isHide": true
+      }
+    },
+    {
+      "path": "/account-admin",
+      "name": "account-admin",
+      "redirect": "/account-admin/account",
+      "meta": {
+        "icon": "Management",
+        "title": "账号管理",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/account-admin/account",
+          "name": "account",
+          "component": "/account-admin/account/index",
+          "meta": {
+            "icon": "",
+            "title": "账号汇总",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/recycle",
+          "name": "recycle",
+          "component": "/account-admin/recycle/index",
+          "meta": {
+            "icon": "",
+            "title": "回收列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/delete",
+          "name": "delete",
+          "component": "/account-admin/delete/index",
+          "meta": {
+            "icon": "",
+            "title": "删除列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/publish",
+          "name": "publish",
+          "component": "/account-admin/publish/index",
+          "meta": {
+            "icon": "",
+            "title": "发布列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/sale",
+          "name": "sales",
+          "component": "/account-admin/sales/index",
+          "meta": {
+            "icon": "",
+            "title": "销售列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/sold-out",
+          "name": "sold-out",
+          "component": "/account-admin/sold-out/index",
+          "meta": {
+            "icon": "",
+            "title": "已售列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/unsold",
+          "name": "unsold",
+          "component": "/account-admin/unsold/index",
+          "meta": {
+            "icon": "",
+            "title": "未售列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/account-class",
+          "name": "account-class",
+          "component": "/account-admin/account-class/index",
+          "meta": {
+            "icon": "",
+            "title": "账号分类",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/account-admin/phone-lib",
+          "name": "phone-lib",
+          "component": "/account-admin/phone-lib/index",
+          "meta": {
+            "icon": "",
+            "title": "手机号码库",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "/message",
+      "name": "message",
+      "redirect": "/message/template",
+      "meta": {
+        "icon": "Comment",
+        "title": "短信管理",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/message/template",
+          "name": "template",
+          "component": "/message/template/index",
+          "meta": {
+            "icon": "",
+            "title": "短信模板",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/message/sending",
+          "name": "sending",
+          "component": "/message/sending/index",
+          "meta": {
+            "icon": "",
+            "title": "短信发送",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/message/sms-logger",
+          "name": "sms-logger",
+          "component": "/message/sms-logger/index",
+          "meta": {
+            "icon": "",
+            "title": "短信记录",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/message/record",
+          "name": "record",
+          "component": "/message/record/index",
+          "meta": {
+            "icon": "",
+            "title": "回复记录",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "/data-statistics",
+      "name": "data-statistics",
+      "redirect": "/data-statistics/sale",
+      "meta": {
+        "icon": "HelpFilled",
+        "title": "数据统计",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/data-statistics/sale",
+          "name": "sales-statistics",
+          "component": "/data-statistics/sales-statistics/index",
+          "meta": {
+            "icon": "",
+            "title": "销售数据",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/data-statistics/recovery",
+          "name": "recycle-statistics",
+          "component": "/data-statistics/recycle-statistics/index",
+          "meta": {
+            "icon": "",
+            "title": "回收数据",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/data-statistics/push",
+          "name": "publish-statistics",
+          "component": "/data-statistics/publish-statistics/index",
+          "meta": {
+            "icon": "",
+            "title": "发布数据",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "/after-sales",
+      "name": "after-sales",
+      "redirect": "/after-sales/tickets",
+      "meta": {
+        "icon": "List",
+        "title": "售后工单",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/after-sales/tickets",
+          "name": "ticket",
+          "component": "/after-sales/tickets/index",
+          "meta": {
+            "icon": "",
+            "title": "售后工单汇总",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/after-sales/add-ticket",
+          "name": "add-ticket",
+          "component": "/after-sales/add-ticket/index",
+          "meta": {
+            "icon": "",
+            "title": "工单详情",
+            "isLink": "",
+            "isHide": true,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/after-sales/unresolved-ticket",
+          "name": "unresolved-ticket",
+          "component": "/after-sales/unresolved-ticket/index",
+          "meta": {
+            "icon": "",
+            "title": "未完结工单",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/after-sales/completed-ticket",
+          "name": "completed-ticket",
+          "component": "/after-sales/completed-ticket/index",
+          "meta": {
+            "icon": "",
+            "title": "已完结工单",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/after-sales/ticket-summary",
+          "name": "ticket-summary",
+          "component": "/after-sales/ticket-summary/index",
+          "meta": {
+            "icon": "",
+            "title": "工单处理汇总",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "/auth",
+      "name": "auth",
+      "redirect": "/auth/branch/index",
+      "meta": {
+        "icon": "Tools",
+        "title": "系统设置",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/auth/branch",
+          "name": "branch",
+          "component": "/auth/branch/index",
+          "meta": {
+            "icon": "",
+            "title": "门店管理",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/user",
+          "name": "user",
+          "component": "/auth/user/index",
+          "meta": {
+            "icon": "",
+            "title": "用户管理",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/role",
+          "name": "role",
+          "component": "/auth/role/index",
+          "meta": {
+            "icon": "",
+            "title": "角色管理",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/profile-data",
+          "name": "profile-data",
+          "component": "/auth/user/modules/profile-data/index",
+          "meta": {
+            "icon": "",
+            "title": "用户数据",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/menus",
+          "name": "menus",
+          "component": "/auth/menus/index",
+          "meta": {
+            "icon": "",
+            "title": "菜单管理",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/dict",
+          "name": "dict",
+          "component": "/auth/dict/index",
+          "meta": {
+            "icon": "",
+            "title": "字典管理",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/auth/logger",
+          "name": "logger",
+          "component": "/auth/logger/index",
+          "meta": {
+            "icon": "",
+            "title": "操作日志",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    },
+    {
+      "path": "/app",
+      "name": "app",
+      "redirect": "/app/first-screen",
+      "meta": {
+        "icon": "Platform",
+        "title": "App管理",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": false
+      },
+      "children": [
+        {
+          "path": "/app/first-screen",
+          "name": "first-screen",
+          "component": "/app/first-screen/index",
+          "meta": {
+            "icon": "",
+            "title": "首屏维护",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/app/product-carousel",
+          "name": "product-carousel",
+          "component": "/app/product-carousel/index",
+          "meta": {
+            "icon": "",
+            "title": "商品轮播",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/app/marketing-carousel",
+          "name": "marketing-carousel",
+          "component": "/app/marketing-carousel/index",
+          "meta": {
+            "icon": "",
+            "title": "营销轮播",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/app/func-maintenance",
+          "name": "func-maintenance",
+          "component": "/app/func-maintenance/index",
+          "meta": {
+            "icon": "",
+            "title": "功能维护",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        },
+        {
+          "path": "/app/chat",
+          "name": "chat",
+          "component": "/app/chat/index",
+          "meta": {
+            "icon": "",
+            "title": "消息列表",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": false
+          }
+        }
+      ]
+    }
+  ],
+  "msg": "成功"
+}
