@@ -1,6 +1,6 @@
 {
   "name": "yuanawl-admin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist-electron/main/index.js",
   "description": "元阿网络管理后台",
   "author": "琴屿智心（青岛）科技有限公司 <zhangxuefei@qinmind.cn>",
@@ -22,7 +22,8 @@
     "dev": "vite",
     "build": "vite build && electron-builder",
     "build:mac": "vite build && electron-builder --mac --config --publish always",
-    "preview": "vite preview"
+    "build:win": "vite build && electron-builder --win --x64 --config --publish always",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "YourAppID",
+  "appId": "com.yuanawl.c.1.0.0",
   "asar": true,
   "productName": "元阿网络",
   "directories": {
@@ -31,8 +31,13 @@
   },
   "nsis": {
     "oneClick": false,
-    "perMachine": false,
+    "allowElevation": true,
     "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false
+    "installerIcon": "./public/favicon.png",
+    "uninstallerIcon": "./public/favicon.png",
+    "installerHeaderIcon": "./public/favicon.png",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "元阿"
   }
 }
