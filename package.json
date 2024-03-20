@@ -1,9 +1,9 @@
 {
-  "name": "electron-vue-vite",
-  "version": "28.0.0",
+  "name": "yuanawl-admin",
+  "version": "1.0.0",
   "main": "dist-electron/main/index.js",
-  "description": "Really simple Electron + Vue + Vite boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "description": "元阿网络管理后台",
+  "author": "琴屿智心（青岛）科技有限公司 <zhangxuefei@qinmind.cn>",
   "license": "MIT",
   "private": true,
   "keywords": [
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && electron-builder",
+    "build": "vite build && electron-builder",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.4.0",
     "crypto-js": "^4.0.0",
+    "socket.io-client": "^4.7.4",
     "currency.js": "^2.0.4",
     "deepcopy": "^2.1.0",
     "default-passive-events": "^2.0.0",
@@ -37,6 +38,7 @@
     "driver.js": "^0.9.8",
     "echarts": "^5.4.2",
     "echarts-liquidfill": "^3.1.0",
+    "electron-updater": "^6.1.8",
     "element-plus": "^2.3.4",
     "formdata-node": "^5.0.1",
     "js-md5": "^0.8.3",

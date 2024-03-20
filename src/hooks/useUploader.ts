@@ -23,27 +23,21 @@ const useUploader = () => {
     // return await uploadBase64ImgOss(base64);
   };
 
-  const uploadStream = async () => {
-    // const filepath = await dialog.open({
-    //   multiple: false,
-    //   title: "选择文件"
-    // });
-    // const fileContent = await fs.readBinaryFile(filepath as string);
+  const uploadStream = async (type: 'img' | 'sheet' | 'all' = 'all') => {
+    const { path, data } = await window.osApi.openFile({ type });
 
-    // const blob = new Blob([fileContent], { type: "application/octet-stream" });
+    if (!data) {
+      return { data: { 'fileName': '' }, blobUrl: '' }
+    }
 
-    // const blobUrl = URL.createObjectURL(blob);
+    const blob = new Blob([data], { type: "application/octet-stream" });
 
-    // return {
-    //   data: (await uploadStreamImgOss(blob)).data,
-    //   blobUrl: blobUrl
-    // };
+    const blobUrl = URL.createObjectURL(blob);
+
+    return { data: (await uploadStreamImgOss(blob)).data, blobUrl: blobUrl, path };
   };
 
-  return {
-    uploadBase64,
-    uploadStream
-  };
+  return { uploadBase64, uploadStream };
 };
 
 export default useUploader;

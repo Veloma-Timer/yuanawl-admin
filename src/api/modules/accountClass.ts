@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { IAccountType } from "@/typings";
 import http from "@/api";
 
-const baseUrl: string = PORT3 + "/base_account_type";
+const baseUrl: string = "/base_account_type";
 // 新增分类
 export const addAccout = (params: any) => {
   return http.post(`${baseUrl}`, params);

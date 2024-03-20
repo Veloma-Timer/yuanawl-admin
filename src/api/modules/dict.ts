@@ -1,9 +1,8 @@
 import { ReqPage, ResPage } from "@/api/interface";
-import { PORT3 } from "@/api/config/servicePort";
 import { Dict } from "@/typings/dict";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/sys_dict";
+const baseUrl = "/sys_dict";
 
 export const getDictTypeList = (params: ReqPage) => {
   return http.get<ResPage<Dict.ITypeItem>>(`${baseUrl}/type/list`, params);
@@ -57,5 +56,5 @@ export const getImportTemplate = () => {
 };
 
 export const getBaseUrl = () => {
-  return http.get<string>(`${PORT3}/base_url`);
+  return http.get<string>(`/base_url`);
 };

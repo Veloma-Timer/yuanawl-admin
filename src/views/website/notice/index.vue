@@ -46,14 +46,6 @@ const initParam = reactive({});
 
 const { common_status, notice_type, common_yes_no } = useDict("common_status", "notice_type", "common_yes_no");
 
-watch(
-  notice_type,
-  (value: any) => {
-    console.log(value, "--- watch ---");
-  },
-  { immediate: true, deep: true }
-);
-
 const columns = computed<ColumnProps<Website.Notice>[]>(() => [
   { type: "selection", fixed: "left", width: 70 },
   { type: "index", label: "序号", width: 70 },
@@ -61,6 +53,7 @@ const columns = computed<ColumnProps<Website.Notice>[]>(() => [
   {
     prop: "cover",
     label: "封面",
+    width: 150,
     render: ({ row }) => {
       return (
         <el-image

@@ -19,4 +19,17 @@ export namespace User {
     orderCount: number; // 工单计数
     orderStartCount: number; // 工单星级计数
   }
+
+  interface IAppUser {
+    id: number;
+    nick_name: string;
+    avatar: string;
+    phone: string;
+    merchant: string;
+    money: string;
+    status: string;
+    create_time: string;
+    appid: string;
+    mer_name: string;
+  }
 }

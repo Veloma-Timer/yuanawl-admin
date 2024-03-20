@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { App } from "@/typings/app";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/app_func_maintenance";
+const baseUrl = "/app_func_maintenance";
 
 // 查询列表
 export const getFuncMaintenanceList = (params: App.IFuncMaintenanceInstance) => {

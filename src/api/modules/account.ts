@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import http from "@/api";
 import { Account } from "@/typings/account";
 
-const baseUrl: string = PORT3 + "/base_account";
+const baseUrl: string = "/base_account";
 
 // 获取账户汇总列表
 export const summaryList = (params: any) => {
@@ -34,11 +33,11 @@ export const delAccountComplete = (ids: number[]) => {
 
 // 账号模块
 export const accountTemplate = () => {
-  return http.downloadGet(`${PORT3}/static/template/account.xlsx`);
+  return http.downloadGet(`/static/template/account.xlsx`);
 };
 // 回收账户模块
 export const recycleTemplate = () => {
-  return http.downloadGet(`${PORT3}/static/template/recycle.xlsx`);
+  return http.downloadGet(`/static/template/recycle.xlsx`);
 };
 
 export const recycleUpload = (file: FormData) => {
@@ -86,7 +85,7 @@ export const unsoldExport = (ids: string[]) => {
 
 // 获取所有已删除账号
 export const getBaseAccountDel = (params: any) => {
-  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(PORT3 + `/base_account/del`, params);
+  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(`/base_account/del`, params);
 };
 
 // 回收列表
@@ -110,7 +109,7 @@ export const getSalesList = (params: any) => {
   return http.get(`${baseUrl}/sales`, params);
 };
 export const salesTemplate = () => {
-  return http.downloadGet(`${PORT3}/static/template/sales.xlsx`);
+  return http.downloadGet(`/static/template/sales.xlsx`);
 };
 export const salesUpload = (file: FormData) => {
   return http.post(`${baseUrl}/upload/sales`, file);
@@ -126,17 +125,13 @@ export const getPublishList = (params: any) => {
   return http.get(`${baseUrl}/publish`, params);
 };
 export const pointBury = (params: any) => {
-  return http.post(`${PORT3}/sys_point_bury`, params);
+  return http.post(`/sys_point_bury`, params);
 };
 export const publishTemplate = () => {
-  return http.downloadGet(`${PORT3}/static/template/publish.xlsx`);
+  return http.downloadGet(`/static/template/publish.xlsx`);
 };
 export const publishUpload = (file: FormData) => {
   return http.post(`${baseUrl}/upload/publish`, file);
-};
-// 工单列表
-export const orderList = (params: any) => {
-  return http.get(`${PORT3}`, params);
 };
 
 /** 账户编号验证 **/
@@ -145,7 +140,7 @@ export const typeCode = (params: any) => {
 };
 //  生成回收编码
 export const generateCode = (groupingId: number | string): Promise<{ data: string }> => {
-  return http.get(PORT3 + `/sys_code/generate/code`, { groupingId }, { noLoading: true });
+  return http.get(`/sys_code/generate/code`, { groupingId }, { noLoading: true });
 };
 
 // 获取账号详情

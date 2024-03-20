@@ -22,3 +22,7 @@ export const BAIDU_MAP_KEY: string = "";
 
 // oss前缀
 export const OSS_PREFIX: string = "https://yuanawl.oss-cn-hangzhou.aliyuncs.com/";
+
+export const WS_BASE_URl = import.meta.env.VITE_WS_BASE_URl;
+
+export const CHAT_EVENT = 'app_chat_message';

@@ -74,4 +74,8 @@ export namespace App {
     product?: IProductInstance; // 商品
     productId: number; // 关联商品id
   }
+
+  export interface TreeParams {
+
+  }
 }

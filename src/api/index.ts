@@ -1,5 +1,4 @@
 import axios, {Axios, AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig} from "axios";
-import {showFullScreenLoading, tryHideFullScreenLoading} from "@/config/serviceLoading";
 import {useGlobalStore} from "@/stores/modules/global";
 import {useUserStore} from "@/stores/modules/user";
 import {checkStatus} from "./helper/checkStatus";
@@ -16,13 +15,14 @@ export interface CustomAxiosRequestConfig {
 
 const config = {
   // 默认地址请求地址，可在 .env.** 文件中修改
-  // baseURL: import.meta.env.VITE_API_URL as string,
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL + import.meta.env.VITE_API_PREFIX,
+  // baseURL: '/api',
   // 设置超时时间
   timeout: ResultEnum.TIMEOUT as number,
   // 跨域时候允许携带凭证
   withCredentials: true
 };
+
 
 class RequestHttp {
   service: Axios;
@@ -44,7 +44,9 @@ class RequestHttp {
 
         // config.noLoading || showFullScreenLoading();
 
-        config.noLoading || window.osApi.loading();
+        if (!config.url?.includes("chat_message")) {
+          config.noLoading || window.osApi?.loading();
+        }
 
         config.headers?.set('Authorization', userStore.token);
 
@@ -69,7 +71,7 @@ class RequestHttp {
 
         if (!data) return Promise.reject(data);
         const userStore = useUserStore();
-        setTimeout(window.osApi.done, 300);
+        setTimeout(window.osApi?.done, 300);
         // tryHideFullScreenLoading();
         if (data?.statusCode === 500) {
           // 服务异常
@@ -100,7 +102,7 @@ class RequestHttp {
       },
       async (error: AxiosError) => {
         const {response} = error;
-        setTimeout(window.osApi.done, 300);
+        setTimeout(window.osApi?.done, 300);
         // tryHideFullScreenLoading();
         // 请求超时 && 网络错误单独判断，没有 response
         if (error.message.indexOf("timeout") !== -1) alert("请求超时！请您稍后重试");

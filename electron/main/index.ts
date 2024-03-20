@@ -1,9 +1,11 @@
-import {app, BrowserWindow, ipcMain, shell} from 'electron';
-import { useNotification } from './notification';
-import { getMacAddress } from './getMacAddress';
+import {app, BrowserWindow, dialog, ipcMain, shell} from 'electron';
+import {useNotification} from './notification';
+import {getMacAddress} from './getMacAddress';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {readFileSync} from 'node:fs'
 import {release} from 'node:os';
+
 
 // @ts-ignore
 globalThis.__filename = fileURLToPath(import.meta.url)
@@ -33,17 +35,19 @@ const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
+const iconPath = join(process.env.VITE_PUBLIC, 'favicon.ico')
+
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
-    icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
+    title: '元阿网络',
+    icon: iconPath,
     width: 1200,
     height: 800,
     webPreferences: {
+      // contextIsolation: true,
       preload,
     },
   });
-
 
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     win.loadURL(url)
@@ -53,17 +57,19 @@ async function createWindow() {
     win.loadFile(indexHtml)
   }
 
+
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
-  })
+  });
 
   // Make all links open with the browser, not with the application
   win.webContents.setWindowOpenHandler(({url}) => {
     if (url.startsWith('https:')) shell.openExternal(url)
     return {action: 'deny'}
-  })
-  // win.webContents.on('will-navigate', (event, url) => { }) #344
+  });
+
+  ipcMain.handle('icon-path', () => iconPath);
 }
 
 
@@ -110,13 +116,51 @@ ipcMain.handle('open-win', (_, arg) => {
 
 ipcMain.handle('open-url', (_, url) => shell.openExternal(url));
 
+async function handleFileOpen(_, params: OpenFileParams) {
+
+  const typeMap: Record<'img' | 'sheet' | 'all', () => any> = {
+    'img': () => {
+      const imgTypes = ['bmp', 'jpg', 'png', 'tif', 'gif', 'pcx', 'tga', 'exif', 'fpx', 'svg', 'psd', 'cdr', 'pcd', 'dxf', 'ufo', 'eps', 'ai', 'raw', 'WMF', 'webp', 'avif', 'apng'];
+      return [
+        {name: 'Images', extensions: [...imgTypes, ...imgTypes.map(type => type.toUpperCase())]}
+      ]
+    },
+    'sheet': () => {
+      return [
+        {name: 'Custom File Type', extensions: ['xlsx']},
+      ]
+    },
+    'all': () => {
+      return {name: 'All Files', extensions: ['*']}
+    }
+  }
+
+  const filters = typeMap[params?.type || 'all']();
+
+  const {canceled, filePaths} = await dialog.showOpenDialog(win, {
+    title: params?.title || '选择文件',
+    filters
+  })
+  if (!canceled) {
+    const path = filePaths[0];
+
+    const buffer = readFileSync(path);
+
+    return {path, data: buffer};
+  }
+  return {path: '', data: null}
+}
+
+ipcMain.handle('dialog:openFile', handleFileOpen)
+
 ipcMain.handle('ready', (event) => {
   const sender = event.sender;
 
   const address = getMacAddress();
-  console.log('发送')
   sender.send('mac-address', address);
-})
+});
+
+
 
 useNotification();
 

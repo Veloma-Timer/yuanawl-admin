@@ -37,7 +37,7 @@ const userStore = useUserStore();
 
 const onToXuanhao = async () => {
   const url = `https://yuanawl.com/admin/alogin?phone=${userStore.userInfo.tel}`;
-  window.osApi.openUrl(url);
+  window.osApi?.openUrl(url);
 };
 </script>
 

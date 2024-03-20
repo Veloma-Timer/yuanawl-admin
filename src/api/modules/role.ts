@@ -1,9 +1,8 @@
 import { ReqPage, ResPage } from "@/api/interface";
 import http from "@/api";
 import { Role } from "@/typings/role";
-import { PORT3 } from "@/api/config/servicePort";
 
-const baseUrl = PORT3 + "/sys_role";
+const baseUrl = "/sys_role";
 
 export const getRoleList = (params?: Partial<ReqPage & Role.Item>) => {
   return http.get<ResPage<Role.Item>>(`${baseUrl}/list`, params);

@@ -1,5 +1,6 @@
-import { Menu } from "@/typings/menu";
-import { User } from "@/typings/user";
+import {Menu} from "@/typings/menu";
+import {User} from "@/typings/user";
+import {ChatMessage} from "@/typings/chat";
 
 export type LayoutType = "vertical" | "classic" | "transverse" | "columns";
 
@@ -80,4 +81,9 @@ export interface AuthState {
 /* KeepAliveState */
 export interface KeepAliveState {
   keepAliveName: string[];
+}
+
+
+export interface Chat {
+  chatList: ChatMessage.IChatItem[]
 }

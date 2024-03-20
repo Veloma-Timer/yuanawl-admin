@@ -1,9 +1,8 @@
 import { ReqPage, ResPage } from "@/api/interface";
-import { PORT3 } from "@/api/config/servicePort";
 import { Logger } from "@/typings/logger";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/sys_logger";
+const baseUrl = "/sys_logger";
 
 // 列表
 export const getLogList = (params?: ReqPage) => {

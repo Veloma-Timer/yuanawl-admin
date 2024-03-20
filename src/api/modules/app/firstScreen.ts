@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { App } from "@/typings/app";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/app_first_screen";
+const baseUrl = "/app_first_screen";
 
 // 查询列表
 export const getFirstScreenList = (params: App.IFirstScreenQuery) => {
