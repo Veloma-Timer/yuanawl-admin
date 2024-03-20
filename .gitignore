@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 electron-builder.yml
+electron-builder.json5
 
 components.d.ts
 dist-electron
