@@ -5,6 +5,7 @@ import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {readFileSync} from 'node:fs'
 import {release} from 'node:os';
+import updator from './updator';
 
 
 // @ts-ignore
@@ -72,13 +73,12 @@ async function createWindow() {
   ipcMain.handle('icon-path', () => iconPath);
 }
 
+app.whenReady().then(createWindow).then(() => updator(win));
 
-app.whenReady().then(createWindow);
-
-app.on('window-all-closed', () => {
-  win = null
-  if (process.platform !== 'darwin') app.quit()
-})
+// app.on('window-all-closed', () => {
+//   win = null
+//   if (process.platform !== 'darwin') app.quit()
+// })
 
 app.on('second-instance', () => {
   if (win) {
@@ -155,9 +155,8 @@ ipcMain.handle('dialog:openFile', handleFileOpen)
 
 ipcMain.handle('ready', (event) => {
   const sender = event.sender;
-
   const address = getMacAddress();
-  sender.send('mac-address', address);
+  sender.send('mac-address', {macAddress: address, platform: process.platform});
 });
 
 

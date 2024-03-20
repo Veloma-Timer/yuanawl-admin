@@ -49,6 +49,7 @@ class RequestHttp {
         }
 
         config.headers?.set('Authorization', userStore.token);
+        config.headers?.set('platform', globalStore.platform);
 
         if (config.url?.includes("login")) {
           config.headers?.set('MacAddress', globalStore.macAddress);

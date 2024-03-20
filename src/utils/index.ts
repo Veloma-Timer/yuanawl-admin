@@ -1,7 +1,8 @@
-import { FieldNamesProps } from "@/components/ProTable/interface";
-import { isArray } from "@/utils/is";
+import {FieldNamesProps} from "@/components/ProTable/interface";
+import {isArray} from "@/utils/is";
 import currency from "currency.js";
-import { Menu } from "@/typings/menu";
+import {Menu} from "@/typings/menu";
+import {useDateFormat} from "@vueuse/core";
 
 /**
  * @description 获取localStorage
@@ -531,3 +532,12 @@ export const getOperationColWidth = (powerButtons: string[], buttons: string[]) 
       return total + 100;
     }, 0);
 };
+
+export const getTime = (date: string) => {
+  const currentDate = new Date();
+
+  if (useDateFormat(date, 'YYYY-MM-DD').value === useDateFormat(currentDate, 'YYYY-MM-DD').value) {
+    return useDateFormat(date, 'hh:mm').value
+  }
+  return useDateFormat(date, 'YYYY/MM/DD').value
+}

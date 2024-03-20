@@ -14,7 +14,8 @@
     </el-header>
     <el-container class="classic-content">
       <el-aside v-show="!isHide">
-        <div class="aside-box" :style="{ width: isCollapse ? '65px' : '210px' }">
+        <!--<div class="aside-box" :style="{ width: isCollapse ? '65px' : '210px' }">-->
+        <div class="aside-box" :style="{ width: '140px' }">
           <el-scrollbar class="px-2">
             <el-menu
               :default-active="activeMenu"

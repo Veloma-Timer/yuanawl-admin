@@ -53,6 +53,7 @@ onMounted(() => {
 
   // 接收用户点击的操作, 跳转对应的页面
   window.osApi?.watchNotification((params) => {
+    // 默认第一个
     let sessionId = chatStore.chatList[0].session_id;
     try {
       const extras = JSON.parse(params.extras);
@@ -63,7 +64,10 @@ onMounted(() => {
     router.push({name: 'chat', query: {sessionId: sessionId}});
   });
 
-  window.osApi?.watchMacAddress((address: string) => globalStore.setMacAddress(address));
+  window.osApi?.watchMacAddress((params: { macAddress: string, platform: Platform }) => {
+    globalStore.setPlatform(params.platform);
+    globalStore.setMacAddress(params.macAddress);
+  });
 });
 
 </script>

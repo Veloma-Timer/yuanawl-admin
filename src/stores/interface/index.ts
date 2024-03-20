@@ -11,6 +11,7 @@ export type LanguageType = "zh" | "en" | null;
 /* GlobalState */
 export interface GlobalState {
   layout: LayoutType;
+  platform: string;
   assemblySize: AssemblySizeType;
   language: LanguageType;
   maximize: boolean;

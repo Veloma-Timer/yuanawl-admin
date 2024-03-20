@@ -1,0 +1,6 @@
+publish:
+  provider: github
+  owner: 'Veloma-Timer'
+  repo: 'yuanawl-admin'
+  token: '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'
+  releaseType: 'release'

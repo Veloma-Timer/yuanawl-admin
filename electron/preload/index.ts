@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from "electron";
+import {contextBridge, ipcRenderer} from "electron";
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", {
@@ -23,12 +23,16 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
   // ...
 });
 
+
 contextBridge.exposeInMainWorld("osApi", {
   sendNotification: (params: NotificationParams) => ipcRenderer.invoke("notification", params),
   watchNotification: (callback: Function) =>
     ipcRenderer.on("return-notification", (_, value: NotificationParams) => callback(value)),
   openUrl: (url: string) => ipcRenderer.invoke("open-url", url),
-  watchMacAddress: (callback: Function) => ipcRenderer.on("mac-address", (_, value: string) => callback(value)),
+  watchMacAddress: (callback: Function) => ipcRenderer.on("mac-address", (_, params: {
+    macAddress: string,
+    platform: Platform
+  }) => callback(params)),
   ready: () => ipcRenderer.invoke("ready"),
   loading: () => appendLoading(),
   done: () => removeLoading(),

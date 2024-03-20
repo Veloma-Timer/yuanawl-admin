@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { GlobalState } from "@/stores/interface";
 import { DEFAULT_PRIMARY } from "@/config";
 import piniaPersistConfig from "@/config/piniaPersist";
+import {ObjToKeyValArray} from "@/typings/global";
 
 export const useGlobalStore = defineStore({
   id: "global",
@@ -11,6 +12,7 @@ export const useGlobalStore = defineStore({
     layout: "classic",
     // element 组件大小
     assemblySize: "default",
+    platform: '',
     // 当前系统语言
     language: null,
     // 当前页面是否全屏
@@ -52,6 +54,9 @@ export const useGlobalStore = defineStore({
     },
     setMacAddress(val: string) {
       this.macAddress = val;
+    },
+    setPlatform(val: string) {
+      this.platform = val;
     }
   },
   persist: piniaPersistConfig("global")

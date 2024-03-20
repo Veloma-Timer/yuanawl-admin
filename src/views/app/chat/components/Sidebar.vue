@@ -15,22 +15,23 @@
           :class="[currentSessionId == session_id ? 'bg-slate-200' : '', 'customer-item', 'cursor-pointer']"
           @click="handleClickChat(session_id)"
         >
-          <div class="flex flex-row items-center gap-3">
+          <div class="flex flex-row items-center gap-3 overflow-x-hidden">
             <el-badge
               :hidden="Number(is_not_read_count) < 1"
               :max="99"
               :value="chatStore.getPendingList.total"
+              class="flex-shrink-0"
             >
               <div class="rounded overflow-hidden">
                 <img
-                  :src="isEmpty(user.avatar) ? 'https://dummyimage.com/128x128/354ea1/ffffff&text=G' : formatUrl(user.avatar)"
+                  :src="isEmpty(user.avatar) ? `https://dummyimage.com/128x128/354ea1/ffffff&text=${user.nick_name.slice(0, 1)}` : formatUrl(user.avatar)"
                   :alt="user.nick_name" width="35" height="35">
               </div>
             </el-badge>
 
 
             <div class="flex-1">
-              <div class="flex flex-row justify-between items-center w-full">
+              <div class="flex flex-row justify-between items-center w-full gap-1">
                 <p class="text-sm font-medium capitalize text-slate-700">{{ user?.nick_name ?? "未知" }}</p>
                 <p class="text-xs text-gray-400">{{ getTime(message_time) }}</p>
               </div>
@@ -49,9 +50,8 @@
 <script setup lang="ts">
 
 import {ChatMessage} from '@/typings/chat';
-import {useDateFormat} from "@vueuse/core";
 import {useChatStore} from "@/stores/modules/chat";
-import {formatUrl} from "@/utils";
+import {formatUrl, getTime} from "@/utils";
 import {isEmpty} from "@/utils/is";
 
 interface IProps {
@@ -63,14 +63,7 @@ interface IEmits {
   (e: "update:currentSessionId", sessionId: number): void
 }
 
-const getTime = (date: string) => {
-  const currentDate = new Date();
 
-  if (useDateFormat(date, 'YYYY-MM-DD').value === useDateFormat(currentDate, 'YYYY-MM-DD').value) {
-    return useDateFormat(date, 'hh:mm').value
-  }
-  return useDateFormat(date, 'YYYY/MM/DD').value
-}
 
 const chatStore = useChatStore()
 

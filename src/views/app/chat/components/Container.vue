@@ -1,6 +1,7 @@
 <template>
-  <div class="flex flex-col w-full h-full">
-    <div class="bg-white p-4 border-b border-b-[#eee] font-medium drop-shadow-sm">{{ currentCustomer.nick_name }}</div>
+  <div class="flex flex-col flex-1 h-full">
+    <template v-if="currentCustomer?.nick_name">
+      <div class="bg-white p-4 border-b border-b-[#eee] font-medium drop-shadow-sm">{{ currentCustomer.nick_name }}</div>
     <div
       class="flex-1 p-4 space-y-6 overflow-y-auto text-sm leading-6 shadow-sm content-wrapper bg-white text-slate-900 sm:text-base sm:leading-7"
     >
@@ -25,7 +26,7 @@
     </div>
     <!-- Prompt message input -->
 
-    <div class="relative border-t border-t-[#eee]">
+      <div v-if="currentCustomer?.nick_name" class="relative border-t border-t-[#eee]">
       <textarea
         v-model="content"
         class="block w-full p-4 pr-20 text-sm resize-none outline-none"
@@ -34,6 +35,11 @@
         required
         @keydown="onKeydown"
       ></textarea>
+    </div>
+    </template>
+    <div v-else class="w-full h-full flex flex-row items-center justify-center">
+      <img
+        src="@/assets/images/logo-small.png" alt="元阿网络" width="100" height="100">
     </div>
   </div>
 </template>
@@ -141,4 +147,5 @@ const onKeydown = function (event: KeyboardEvent) {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

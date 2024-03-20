@@ -15,6 +15,8 @@ declare interface OpenFileParams {
   type?: 'img' | 'sheet' | 'all'
 }
 
+declare type Platform = "aix" | "android" | "darwin" | "freebsd" | "haiku" | "linux" | "openbsd" | "sunos" | "win32" | "cygwin" | "netbsd"
+
 declare interface NotificationParams {
   id?: number; // id
   type?: 'base' | 'message' | 'notification'; // 通知类型 base不需要处理, message来自app的消息 需要处理, notification 通知类需要处理， 例如工单

@@ -16,12 +16,14 @@ declare interface OpenFileParams {
   type?: 'img' | 'sheet' | 'all'
 }
 
+declare type Platform = "aix" | "android" | "darwin" | "freebsd" | "haiku" | "linux" | "openbsd" | "sunos" | "win32" | "cygwin" | "netbsd"
+
 declare interface Window {
   osApi: {
     sendNotification: (params: NotificationParams) => void;
     watchNotification: (callback: (params: NotificationParams) => void) => void;
     openUrl: (url: string) => void;
-    watchMacAddress: (callback: (address: string) => void) => void;
+    watchMacAddress: (callback: (params: { macAddress: string, platform: Platform }) => void) => void;
     ready: () => void;
     loading: () => void;
     done: () => void;
