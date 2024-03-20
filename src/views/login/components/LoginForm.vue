@@ -34,11 +34,10 @@ import {useUserStore} from "@/stores/modules/user";
 import {useTabsStore} from "@/stores/modules/tabs";
 import {loginApi} from "@/api/modules/login";
 import type {ElForm} from "element-plus";
-import {ElMessage} from "element-plus";
 import {Login} from "@/api/interface";
 import {useRouter} from "vue-router";
-import md5 from "js-md5";
 import {getTimeState} from "@/utils";
+import md5 from "js-md5";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -58,7 +57,7 @@ const loginForm = reactive<Login.ReqLoginForm>({
   password: ""
 });
 
-const onSendNotification = () => window.osApi.sendNotification({ title: getTimeState(), body: '欢迎登录元阿网络后台!' });
+const onSendNotification = () => window.osApi?.sendNotification({ title: getTimeState(), body: '欢迎登录元阿网络后台!' });
 
 // login
 const login = (formEl: FormInstance | undefined) => {
@@ -70,6 +69,7 @@ const login = (formEl: FormInstance | undefined) => {
       // 1.执行登录接口
       const res = await loginApi({
         ...loginForm,
+        // @ts-ignore
         password: md5(loginForm.password)
       });
 
@@ -88,7 +88,7 @@ const login = (formEl: FormInstance | undefined) => {
         // 4.跳转到首页
         router.push("/");
       } else {
-        ElMessage.error(message || "登录失败");
+        alert(message || "登录失败")
       }
     } finally {
       loading.value = false;

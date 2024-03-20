@@ -11,6 +11,11 @@ declare interface NotificationParams {
   reply?: string; // 回复消息
 }
 
+declare interface OpenFileParams {
+  title?: string;
+  type?: 'img' | 'sheet' | 'all'
+}
+
 declare interface Window {
   osApi: {
     sendNotification: (params: NotificationParams) => void;
@@ -20,5 +25,6 @@ declare interface Window {
     ready: () => void;
     loading: () => void;
     done: () => void;
+    openFile: (params?: OpenFileParams) => ({ path: string, data: null | any })
   }
 }

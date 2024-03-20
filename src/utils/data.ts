@@ -40,3 +40,4 @@ export const getParentRoute = (route: Menu.Item) => {
 
   return recursion(route);
 };
+

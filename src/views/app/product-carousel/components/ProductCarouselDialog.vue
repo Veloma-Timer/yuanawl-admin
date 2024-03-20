@@ -41,9 +41,9 @@
           :load="load"
           :data="treeData"
           :props="treeProps"
-          :remote-method="remoteSearch"
           :render-after-expand="true"
         >
+          <!--:remote-method="remoteSearch"-->
           <template #default="{ data: { name, isLeaf, icon, number } }">
             <div v-if="!isLeaf" class="flex items-center gap-1">
               <img :src="icon" width="20" height="20" />
@@ -101,8 +101,8 @@ import { getProductsByType } from "@/api/modules/app/yuanawlAdmin";
 import { YuanawlAdmin } from "@/typings/yuanawlAdmin";
 import { Close } from "@element-plus/icons-vue";
 import useUploader from "@/hooks/useUploader";
-import { OSS_PREFIX } from "@/config/index";
 import { debounce, formatUrl } from "@/utils";
+import { OSS_PREFIX } from "@/config";
 import { App } from "@/typings/app";
 
 const props = defineProps<{
@@ -170,7 +170,7 @@ const handleSubmit = () => {
 };
 
 const onUpload = async () => {
-  const { data } = await uploader.uploadStream();
+  const { data } = await uploader.uploadStream('img');
   drawerProps.value.row.picture = OSS_PREFIX + data.fileName;
 };
 
@@ -194,34 +194,34 @@ const load = async (node: any, resolve: any) => {
   }
 };
 
-const remoteSearch = debounce((query: string) => {
-  // 调用接口查询
-
-  treeData.value = [
-    {
-      id: 1,
-      name: "测试",
-      isLeaf: false,
-      icon: "",
-      children: [
-        { id: 2, name: "测试-1", isLeaf: true, icon: "" },
-        { id: 3, name: "测试-2", isLeaf: true, icon: "" },
-        { id: 4, name: "测试-3", isLeaf: true, icon: "" }
-      ]
-    },
-    {
-      id: 5,
-      name: "测试2",
-      isLeaf: false,
-      icon: "",
-      children: [
-        { id: 2, name: "测试2-1", isLeaf: true, icon: "" },
-        { id: 3, name: "测试2-2", isLeaf: true, icon: "" },
-        { id: 4, name: "测试2-3", isLeaf: true, icon: "" }
-      ]
-    }
-  ];
-}, 500);
+// const remoteSearch = debounce((query: string) => {
+//   // 调用接口查询
+//
+//   treeData.value = [
+//     {
+//       id: 1,
+//       name: "测试",
+//       isLeaf: false,
+//       icon: "",
+//       children: [
+//         { id: 2, name: "测试-1", isLeaf: true, icon: "" },
+//         { id: 3, name: "测试-2", isLeaf: true, icon: "" },
+//         { id: 4, name: "测试-3", isLeaf: true, icon: "" }
+//       ]
+//     },
+//     {
+//       id: 5,
+//       name: "测试2",
+//       isLeaf: false,
+//       icon: "",
+//       children: [
+//         { id: 2, name: "测试2-1", isLeaf: true, icon: "" },
+//         { id: 3, name: "测试2-2", isLeaf: true, icon: "" },
+//         { id: 4, name: "测试2-3", isLeaf: true, icon: "" }
+//       ]
+//     }
+//   ];
+// }, 500);
 
 defineExpose({
   acceptParams

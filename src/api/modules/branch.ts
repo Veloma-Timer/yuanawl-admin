@@ -1,4 +1,3 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { ResultData } from "@/api/interface";
 import http from "@/api";
 import { Branch } from "@/typings/branch";
@@ -12,7 +11,7 @@ export interface IBranch {
   branchTel: string;
 }
 
-const baseUrl = PORT3 + "/sys_branch";
+const baseUrl = "/sys_branch";
 
 // 获取所有门店
 export const getAllBranch = (): Promise<ResultData<IBranch[]>> => {
@@ -21,17 +20,17 @@ export const getAllBranch = (): Promise<ResultData<IBranch[]>> => {
 
 // 获取所有用户
 export const getAllUser = (params: any) => {
-  return http.get<{ name: string; id: number }[]>(PORT3 + `/sys_user/all`, params, { noLoading: true });
+  return http.get<{ name: string; id: number }[]>(`/sys_user/all`, params, { noLoading: true });
 };
 
 // 获取所有用户选项
 export const getUserOptions = () => {
-  return http.get<{ name: string; id: number }[]>(PORT3 + `/sys_user/options`, {}, { noLoading: true });
+  return http.get<{ name: string; id: number }[]>(`/sys_user/options`, {}, { noLoading: true });
 };
 
 // 获取所有账号
 export const getAllBaseAccount = (params: any) => {
-  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(PORT3 + `/base_account/all`, params, {
+  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(`/base_account/all`, params, {
     noLoading: true
   });
 };
@@ -39,7 +38,7 @@ export const getAllBaseAccount = (params: any) => {
 // 获取所有账号的code和id
 export const getAccountCodeAndId = () => {
   return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(
-    PORT3 + `/base_account/all/code`,
+    `/base_account/all/code`,
     {},
     {
       noLoading: true
@@ -49,7 +48,7 @@ export const getAccountCodeAndId = () => {
 
 // 获取所有已删除账号
 export const getAllBaseAccountDel = (params: any) => {
-  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(PORT3 + `/base_account/all/del`, params, {
+  return http.get<{ accountNumber: string; accountCode: string; id: number }[]>(`/base_account/all/del`, params, {
     noLoading: true
   });
 };

@@ -1,9 +1,8 @@
 import { ReqPage } from "@/api/interface";
 import http from "@/api";
 import { Menu } from "@/typings/menu";
-import { PORT3 } from "@/api/config/servicePort";
 
-const baseUrl = PORT3 + "/sys_menu";
+const baseUrl = "/sys_menu";
 
 export const getMenuList = (params?: ReqPage) => {
   return http.get<Menu.Item[]>(`${baseUrl}/all`, params);

@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { HomeSet } from "@/api/interface";
 import http from "@/api";
 
-const baseUrl: string = PORT3 + "/sys_analysis";
+const baseUrl: string = "/sys_analysis";
 
 export interface IStatistics {
   branchId?: number;

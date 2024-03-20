@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { App } from "@/typings/app";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/app_marketing_carousel";
+const baseUrl = "/app_marketing_carousel";
 
 // 查询列表
 export const getMarketingCarouselList = (params: App.IMarketingCarouselInstance) => {

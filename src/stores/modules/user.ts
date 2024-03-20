@@ -8,7 +8,6 @@ export const useUserStore = defineStore({
     token: "",
     userInfo: {} as UserState["userInfo"]
   }),
-  getters: {},
   actions: {
     // Set Token
     setToken(token: string) {

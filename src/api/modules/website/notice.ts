@@ -1,8 +1,7 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { Website } from "@/typings/website";
 import http from "@/api";
 
-const baseUrl = PORT3 + "/website_notice";
+const baseUrl = "/website_notice";
 
 // 查询列表
 export const getList = (params: Website.Notice) => {

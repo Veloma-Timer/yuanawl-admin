@@ -1,13 +1,12 @@
-import { PORT3 } from "@/api/config/servicePort";
 import { Login } from "@/api/interface";
 import { Menu } from "@/typings/menu";
 import { User } from "@/typings/user";
 import { UnwrapRef } from "vue";
 import http from "@/api";
 
-const baseUrl: string = PORT3 + "/sys_user";
+const baseUrl: string = "/sys_user";
 
-const authUrl = PORT3 + "/auth";
+const authUrl = "/auth";
 
 /**
  * @name 登录模块
@@ -29,7 +28,7 @@ export const getAuthMenuListApi = async () => {
   return http.get<{
     routes: Menu.MenuRoute[];
     buttons: string[];
-  }>(`${PORT3}/sys_role/auth`, { appCode: "admin" }, { loading: false });
+  }>(`/sys_role/auth`, { appCode: "admin" }, { loading: false });
 };
 
 // 用户退出登录
