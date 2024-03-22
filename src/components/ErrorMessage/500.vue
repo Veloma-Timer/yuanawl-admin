@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts" name="500">
-import { HOME_URL } from "@/config";
+import {HOME_URL} from "@/config";
 import { useRouter } from "vue-router";
 const router = useRouter();
 </script>

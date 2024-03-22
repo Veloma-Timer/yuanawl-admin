@@ -41,12 +41,7 @@ import {Promotion} from "@element-plus/icons-vue";
 const router = useRouter();
 const getNameList = async () => {};
 const setRouterLink = item => {
-  router.push({
-    path: "/afterSales/orderSummary",
-    query: {
-      orderCode: item.orderCode
-    }
-  });
+  router.push({ name: "add-ticket", query: { id: item.id } });
 };
 // 处理数据
 defineProps({
@@ -70,13 +65,7 @@ defineProps({
   }
 });
 
-// watch(
-//   () => props.awaitWorkOrder,
-//   count => {
-//     props.awaitWorkOrder = count;
-//   },
-//   { deep: true, immediate: true }
-// );
+
 getNameList();
 </script>
 <style scoped lang="scss">

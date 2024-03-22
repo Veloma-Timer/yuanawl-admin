@@ -66,12 +66,12 @@ const menuList = computed<(Menu.Item & Menu.MenuRoute)[]>(() => {
   const currentRoute = authStore.flatMenuListGet.find(item => item.name === authStore.routeName)!;
 
   // 如果当前是一个父级, 则直接找子级即可
-  if (!currentRoute.parentId) {
-    return authStore.flatMenuListGet.filter(item => item.parentId === currentRoute.id) as (Menu.Item & Menu.MenuRoute)[];
+  if (!currentRoute?.parentId) {
+    return authStore.flatMenuListGet.filter(item => item?.parentId === currentRoute.id && !item.meta.isHide) as (Menu.Item & Menu.MenuRoute)[];
   } else {
     // 如果当前是一个子集, 则找到父级, 然后拿到父级的子集
     const parentRoute = getParentRoute(currentRoute);
-    return authStore.flatMenuListGet.filter(item => item.parentId === parentRoute.id) as (Menu.Item & Menu.MenuRoute)[];
+    return authStore.flatMenuListGet.filter(item => item?.parentId === parentRoute.id && !item.meta.isHide) as (Menu.Item & Menu.MenuRoute)[];
   }
 });
 

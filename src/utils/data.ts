@@ -36,8 +36,8 @@ export const isExistRoute = (name: string) => {
 export const getParentRoute = (route: Menu.Item) => {
   const authStore = useAuthStore();
   const recursion = (route: Menu.Item): Menu.Item => {
-    if (!route.parentId) return route;
-    const currentRoute = authStore.flatMenuListGet.find(item => item.id === route.parentId)!;
+    if (!route?.parentId) return route;
+    const currentRoute = authStore.flatMenuListGet.find(item => item.id === route?.parentId)!;
     return recursion(currentRoute);
   };
 

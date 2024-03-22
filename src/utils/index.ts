@@ -458,7 +458,7 @@ export function handleTree<T extends TreeNode<T>>(
 
   // 使用 as string 断言，因为 keyof T 类型不保证一定是 string
   for (let d of data) {
-    let parentIdKey = (d[config.parentId] ?? "") as string;
+    let parentIdKey = (d[config?.parentId] ?? "") as string;
     if (!childrenListMap[parentIdKey]) {
       childrenListMap[parentIdKey] = [];
     }
@@ -467,7 +467,7 @@ export function handleTree<T extends TreeNode<T>>(
   }
 
   for (let d of data) {
-    let parentIdKey = (d[config.parentId] ?? "") as string;
+    let parentIdKey = (d[config?.parentId] ?? "") as string;
     if (!nodeIds[parentIdKey]) {
       tree.push(d);
     }

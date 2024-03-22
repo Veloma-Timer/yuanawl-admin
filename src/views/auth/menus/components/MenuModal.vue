@@ -17,7 +17,7 @@
       :validate-on-rule-change="false"
     >
       <el-row>
-        <el-col v-if="!isEmpty(form.parentId)">
+        <el-col v-if="!isEmpty(form?.parentId)">
           <el-form-item label="上级菜单" prop="parentId">
             <el-tree-select
               v-model="form.parentId"
@@ -29,7 +29,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col v-if="!isEmpty(form.parentId)">
+        <el-col v-if="!isEmpty(form?.parentId)">
           <el-form-item label="类型" prop="type">
             <el-radio-group v-model="form.type">
               <el-radio v-for="{ label, value } of typeOptions" :label="value" :key="value">{{ label }}</el-radio>

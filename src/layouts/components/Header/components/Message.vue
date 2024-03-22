@@ -78,12 +78,7 @@ const tickets = ref<any[]>([]);
 const userStore = useUserStore();
 
 const setRouterLink = (item: any) => {
-  router.push({
-    path: "/afterSales/orderSummary",
-    query: {
-      orderCode: item.orderCode
-    }
-  });
+  router.push({ name: "add-ticket", query: { id: item.id } });
 };
 
 const toChat = (sessionId: number) => {

@@ -27,7 +27,7 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 const menus = computed<(Menu.MenuRoute & Menu.Item)[]>(() => {
-  return authStore.flatMenuListGet.filter(item => !item.parentId && item.name !== "personal-analysis" && !item.meta.isHide) as any as (Menu.MenuRoute &
+  return authStore.flatMenuListGet.filter(item => !item?.parentId && item.name !== "personal-analysis" && !item.meta.isHide) as any as (Menu.MenuRoute &
     Menu.Item)[];
 });
 
@@ -35,7 +35,7 @@ const routeName = computed(() => {
   const currentRoute = authStore.flatMenuListGet.find(item => item.name === authStore.routeName)!;
 
   // 如果没有父级则直接返回
-  if (!currentRoute.parentId) return currentRoute.name;
+  if (!currentRoute?.parentId) return currentRoute.name;
 
   // 如果有父级则递归寻找父节点
   return getParentRoute(currentRoute).name;
@@ -44,7 +44,7 @@ const routeName = computed(() => {
 // 如果点击的是顶部按钮则直接设置
 const toModule = (menu: Menu.MenuRoute & Menu.Item) => {
   // 这里不应该设置menu.name, 应该找到第一个子级， 然后设置子级路由, 并且做路由跳转
-  const children = authStore.flatMenuListGet.filter(item => item.parentId === menu.id);
+  const children = authStore.flatMenuListGet.filter(item => item?.parentId === menu.id);
   let name: string;
 
   if (children.length < 1) {

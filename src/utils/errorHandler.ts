@@ -17,6 +17,8 @@ const errorHandler = (error: any) => {
   };
   let errorName = errorMap[error.name] || "未知错误";
 
+  console.log(error)
+
   ElNotification({
     title: errorName,
     message: error.message ? error.message : error,

@@ -74,7 +74,7 @@ const columns = reactive<ColumnProps<Role.Item>[]>([
       return (
         <>
           {row.permissions!.map(p => {
-            const permission = menuList.value!.find(item => item.id === p && !item.parentId);
+            const permission = menuList.value!.find(item => item.id === p && !item?.parentId);
             if (permission) {
               return (
                 <el-tag type="success" style={{ marginRight: "10px" }}>

@@ -33,8 +33,15 @@ export const initDynamicRouter = async () => {
     }
     const flatRoutePath = authStore.flatMenuListGet.map(item => item.path);
 
+    console.log(flatRoutePath, '--- flatRoutePath ---')
+
     const redirect = flatRoutePath.includes(HOME_URL) ? HOME_URL : flatRoutePath[0] ?? "/404";
+
     router.addRoute({path: "/", redirect});
+
+    if (!flatRoutePath.includes(HOME_URL)) {
+      router.addRoute({path: HOME_URL, redirect});
+    }
 
     // 3.添加动态路由
     authStore.flatMenuListGet.forEach(item => {
