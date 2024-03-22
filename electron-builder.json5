@@ -1,15 +1,22 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "com.yuanawl.c.1.0.0",
-  "asar": true,
+  "asar": false,
   "productName": "元阿网络",
   "directories": {
     "output": "release/${version}"
   },
   "files": [
-    "dist",
-    "dist-electron"
+    "./dist",
+    "./dist-electron"
   ],
+  "publish": {
+    "provider": "github",
+    "owner": "Veloma-Timer",
+    "repo": "yuanawl-admin",
+    "token": "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",
+    "releaseType": "release"
+  },
   "mac": {
     "icon": "./public/favicon.png",
     "target": [
@@ -18,7 +25,7 @@
     "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
   },
   "win": {
-    "icon": "./public/favicon.png",
+    "icon": "./public/favicon_256.ico",
     "target": [
       {
         "target": "nsis",
@@ -33,11 +40,11 @@
     "oneClick": false,
     "allowElevation": true,
     "allowToChangeInstallationDirectory": true,
-    "installerIcon": "./public/favicon.png",
-    "uninstallerIcon": "./public/favicon.png",
-    "installerHeaderIcon": "./public/favicon.png",
+    "installerIcon": "./public/favicon_256.ico",
+    "uninstallerIcon": "./public/favicon_256.ico",
+    "installerHeaderIcon": "./public/favicon_256.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "元阿"
+    "shortcutName": "元阿网络"
   }
 }

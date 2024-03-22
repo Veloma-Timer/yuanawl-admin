@@ -182,15 +182,12 @@ const columns = computed<ColumnProps<User.IUserItem>[]>(() => [
     : [])
 ]);
 
-// 删除用户信息
-const _deleteUser = async (id: string[] | string[]) => {
+const _deleteUser = async (id: string[] | number[]) => {
   const ids = Array.isArray(id) ? id : [id];
   await useHandleData(deleteUser, ids, `删除用户`);
   proTable.value?.getTableList();
 };
-// 重置用户密码
-// 切换用户状态
-// 批量添加用户
+
 const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null);
 const batchAdd = (title: string) => {
   const params = {
