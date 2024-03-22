@@ -61,9 +61,10 @@ import { getAllList } from "@/api/modules/accountClass";
 import { parseTime, shortcuts } from "@/utils";
 import SvgIcon from "@/components/SvgIcon/index.vue";
 import Title from "@/components/Title/index.vue";
+import {useDateFormat} from "@vueuse/core";
 const selectTypeId: Ref = ref();
 
-const dateRange = ref<[string, string]>([parseTime(new Date(), "{y}-{m}-{d}"), parseTime(new Date(), "{y}-{m}-{d}")]);
+const dateRange = ref<[string, string]>(shortcuts[2].value().map(date => useDateFormat(date, 'YYYY-MM-DD').value) as [string, string]);
 
 const changeDaterange = (date: [string, string]) => (dateRange.value = date);
 

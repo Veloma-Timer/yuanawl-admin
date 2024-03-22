@@ -137,7 +137,7 @@ class RequestHttp {
 
   delete<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
     // @ts-ignore
-    return this.service.delete(url, params, {..._object});
+    return this.service.delete(url, {data: params}, {..._object});
   }
 
   download(url: string, params?: object, _object = {}): Promise<BlobPart> {
