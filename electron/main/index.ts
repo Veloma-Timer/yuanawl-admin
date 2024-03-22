@@ -4,9 +4,9 @@ import {getMacAddress} from './getMacAddress';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {readFileSync} from 'node:fs'
+import { useMenu } from "./menu";
 import {release} from 'node:os';
 import updator from './updator';
-
 
 // @ts-ignore
 globalThis.__filename = fileURLToPath(import.meta.url)
@@ -58,7 +58,6 @@ async function createWindow() {
     win.loadFile(indexHtml)
   }
 
-
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
@@ -69,9 +68,8 @@ async function createWindow() {
     if (url.startsWith('https:')) shell.openExternal(url)
     return {action: 'deny'}
   });
-
-  ipcMain.handle('icon-path', () => iconPath);
 }
+ipcMain.handle('icon-path', () => iconPath);
 
 app.whenReady().then(createWindow).then(() => updator(win));
 
@@ -159,7 +157,6 @@ ipcMain.handle('ready', (event) => {
   sender.send('mac-address', {macAddress: address, platform: process.platform});
 });
 
-
-
 useNotification();
+useMenu(() => updator(win));
 
