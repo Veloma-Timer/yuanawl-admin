@@ -7,32 +7,18 @@
     :close-on-click-modal="false"
     :close-on-press-escape="false"
   >
-    <div class="that-person">
-      <p>
-        <span>所在组: </span>
-        {{ obj.set.label }}
-      </p>
-      <p>
-        <span>门店: </span>
-        {{ oldUserObj.branch!.branchName }}
-      </p>
-      <p>
-        <span>账号: </span>
-        {{ oldUserObj.account }}
-      </p>
-      <p>
-        <span>姓名: </span>
-        {{ oldUserObj.name }}
-      </p>
-      <p>
-        <span>手机号: </span>
-        {{ oldUserObj.tel }}
-      </p>
-      <p>
-        <span>角色: </span>
-        {{ oldUserObj.role!.name }}
-      </p>
-    </div>
+
+    <el-descriptions
+      :column="2"
+      border
+    >
+      <el-descriptions-item label="姓名">{{ userStore.userInfo?.name }}</el-descriptions-item>
+      <el-descriptions-item label="手机号">{{ userStore.userInfo?.tel }}</el-descriptions-item>
+      <el-descriptions-item label="所在组">{{ userStore.userInfo?.set?.label }}</el-descriptions-item>
+      <el-descriptions-item label="门店">{{ userStore.userInfo?.branch?.branchName }}</el-descriptions-item>
+      <el-descriptions-item label="账号">{{ userStore.userInfo?.code }}</el-descriptions-item>
+      <el-descriptions-item label="角色">{{ roleName }}</el-descriptions-item>
+    </el-descriptions>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
@@ -43,30 +29,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { useUserStore } from "@/stores/modules/user";
+import { getRoleDetail } from '@/api/modules/role';
+
 const userStore = useUserStore();
 
 const dialogVisible = ref(false);
-let oldUserObj = ref({});
-const obj = userStore.userInfo;
-const openDialog = () => {
-  oldUserObj.value = obj;
+
+const roleName = ref<string>('');
+
+const openDialog = async () => {
+  const roleId = userStore.userInfo?.roleId;
+  if (roleId) {
+    const { data } = await getRoleDetail(roleId);
+    roleName.value = data.name;
+  }
   dialogVisible.value = true;
 };
 defineExpose({ openDialog });
 </script>
-<style lang="scss" scoped>
-.that-person {
-  p {
-    margin: 10px 0;
-    font-size: 16px;
-    span {
-      display: inline-block;
-      width: 60px;
-      font-weight: bold;
-      color: #333333;
-    }
-  }
-}
-</style>
+

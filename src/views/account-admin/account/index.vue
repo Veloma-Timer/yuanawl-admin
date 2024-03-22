@@ -1,6 +1,8 @@
 <template>
   <div class="table-box">
-    <ProTable ref="proTable" title="账号汇总" :columns="columns" :init-param="initParam" :request-api="getTableList">
+    <ProTable
+ref="proTable" title="账号汇总" :columns="columns" :init-param="initParam"
+              :summaryKey="['salePrice', 'accountRecyclerPrice']" :request-api="getTableList">
       <!-- 表格 header 按钮 -->
       <template #tableHeader="{ selectedListIds, isSelected }">
         <!--<el-button v-auth="'account:download-template'" :icon="Download" plain @click="batchAdd('下载')">下载模板 </el-button>-->
@@ -41,7 +43,7 @@
 
 <script setup lang="tsx" name="AccountTable">
 import {getFixed, getOperationColWidth, getPhone, parseTime, setPhone, shortcuts, visibleOperationCol} from "@/utils";
-import {Delete, Document, Download, Hide, Upload, View} from "@element-plus/icons-vue";
+import {Delete, Document, Hide, Upload, View} from "@element-plus/icons-vue";
 import ImportExcel from "@/views/account-admin/components/ImportExcel/index.vue";
 import {ColumnProps, ProTableInstance} from "@/components/ProTable/interface";
 import {getAccountCodeAndId, getAllBranch} from "@/api/modules/branch";
@@ -59,13 +61,13 @@ import {saveFile} from "@/utils/file";
 import deepcopy from "deepcopy";
 import {
   accountExport,
+  accountTemplate,
   addSummary,
   deleteAccountBatch,
   deleteSummary,
   editSummary,
   pointBury,
   summaryList,
-  accountTemplate,
   summaryUpload
 } from "@/api/modules/account";
 import {BLUE_COLOR} from "@/config";

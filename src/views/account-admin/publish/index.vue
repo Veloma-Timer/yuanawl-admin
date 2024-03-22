@@ -8,6 +8,7 @@
       :tool-button="isShowTableHeaderBtn"
       :request-api="getTableList"
       :isShowSearch="isShowTableHeaderBtn"
+      :summary-key="['publishPrice', 'accountRecyclerPrice']"
     >
       <!-- 表格 header 按钮 -->
       <!-- Expand -->

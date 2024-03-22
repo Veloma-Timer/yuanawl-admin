@@ -12,6 +12,7 @@
         :isShowSearch="isShowTableHeaderBtn"
         :init-param="initParam"
         :request-api="getTableList"
+        :summary-key="['salePrice', 'accountRecyclerPrice']"
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader="{ selectedListIds }">

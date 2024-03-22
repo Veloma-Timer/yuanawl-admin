@@ -13,8 +13,8 @@
       <span>
         {{ attrs.title }}
       </span>
-      <div class="header-right">
-        <el-icon size="22" class="el-icon--left" @click="setFullscreen(!fullscreen)">
+      <div class="header-right gap-2 items-center">
+        <el-icon size="18" class="el-icon--left" @click="setFullscreen(!fullscreen)">
           <FullScreen v-if="!fullscreen" />
           <Minus v-else />
         </el-icon>
@@ -32,50 +32,22 @@
   </el-dialog>
 </template>
 <script name="DsDialog" lang="ts" setup>
-import { getCurrentInstance, nextTick, ref, useSlots } from "vue";
-import { FullScreen, Minus, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
-let slots = useSlots();
+import { getCurrentInstance, ref } from "vue";
+import { FullScreen, Minus } from "@element-plus/icons-vue";
 interface IProps {
   defaultFullscreen: boolean;
 }
-let props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<IProps>(), {
   defaultFullscreen: false
 });
-let ctx = getCurrentInstance();
-let { attrs } = ctx!;
-let fullscreen = ref(props.defaultFullscreen);
-let setFullscreen = (status: boolean) => {
+const ctx = getCurrentInstance();
+const { attrs } = ctx!;
+const fullscreen = ref(props.defaultFullscreen);
+const setFullscreen = (status: boolean) => {
   fullscreen.value = status;
 };
 let elDialogRef = ref({});
-let dialogWidth = 10000;
 let isMini = ref(false);
-function onOpen() {
-  nextTick(() => {
-    let $el = elDialogRef.value.dialogContentRef.$el;
-    $el.isFullScreen = fullscreen.value;
-    if (fullscreen.value) {
-      $el.style.left = "0%";
-      $el.style.top = "0%";
-      return;
-    }
-    if (isMini.value) {
-      $el.style.left = "10%";
-      $el.style.top = "80%";
-    } else {
-      $el.style.left = "0%";
-      $el.style.top = "10%";
-    }
-  });
-}
-
-function minimize() {
-  isMini.value = !isMini.value;
-  setFullscreen(isMini.value);
-  // nextTick(() => {
-  onOpen();
-  // })
-}
 </script>
 <style lang="scss">
 .ds-dialog {
@@ -90,7 +62,6 @@ function minimize() {
     height: 48px;
     overflow: hidden;
     .el-dialog__header {
-      // padding: 12px 0;
       justify-content: flex-start;
     }
   }
@@ -100,7 +71,7 @@ function minimize() {
     align-items: center;
     height: 48px;
     padding: 12px;
-    margin: 0;
+    margin-bottom: 20px;
     font-size: 18px;
     font-weight: normal;
     .header-right {

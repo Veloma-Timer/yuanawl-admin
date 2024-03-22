@@ -61,7 +61,7 @@ onMounted(() => {
     } catch (e) {
     }
     if (!sessionId) return;
-    router.push({name: 'chat', query: {sessionId: sessionId}});
+    router.push({name: 'chat', query: {sessionId: sessionId, reply: params.reply}});
   });
 
   window.osApi?.watchMacAddress((params: { macAddress: string, platform: Platform }) => {

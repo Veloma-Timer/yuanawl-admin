@@ -67,6 +67,8 @@
       :data="processTableData"
       :border="border"
       :row-key="rowKey"
+      show-summary
+      :summary-method="(param: any) => getSummaries(param, summaryKey)"
       @selection-change="selectionChange"
     >
       <!-- 默认插槽 -->
@@ -145,7 +147,7 @@
 </template>
 
 <script setup lang="ts" name="ProTable">
-import { computed, onBeforeUnmount, onMounted, provide, reactive, ref, unref, useSlots, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, provide, reactive, ref, unref, watch } from "vue";
 import { ElTable } from "element-plus";
 import { useTable } from "@/hooks/useTable";
 import { useSelection } from "@/hooks/useSelection";
@@ -159,8 +161,11 @@ import ColSetting from "./components/ColSetting.vue";
 import TableColumn from "./components/TableColumn.vue";
 import Sortable from "sortablejs";
 import Title from "@/components/Title/index.vue";
+import { getSummaries } from '@/utils/data';
+
 export interface ProTableProps {
   columns: ColumnProps[]; // 列配置项  ==> 必传
+  summaryKey?: string[]; // 合计key
   data?: any[]; // 静态 table data 数据，若存在则不会使用 requestApi 返回的 data ==> 非必传
   requestApi?: (params: any) => Promise<any>; // 请求表格数据的 api ==> 非必传
   requestAuto?: boolean; // 是否自动执行请求 api ==> 非必传（默认为true）
@@ -180,6 +185,7 @@ export interface ProTableProps {
 // 接受父组件参数，配置默认值
 const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
+  summaryKey: () => [],
   requestAuto: true,
   pagination: true,
   showFooterBtn: true,

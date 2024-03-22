@@ -1,6 +1,9 @@
 import router from "@/routers/index";
 import { Menu } from "@/typings/menu";
 import { useAuthStore } from "@/stores/modules/auth";
+import {Commodity} from "@/api/interface/commodity/commodity";
+import {TableColumnCtx} from "element-plus";
+import currency from "currency.js";
 
 /**
  * @desc 获取列表的label
@@ -41,3 +44,38 @@ export const getParentRoute = (route: Menu.Item) => {
   return recursion(route);
 };
 
+interface SummaryMethodProps<T = any> {
+  columns: TableColumnCtx<T>[]
+  data: T[]
+}
+
+export const getSummaries = (param: SummaryMethodProps, props: string[] = []) => {
+  const { columns, data } = param
+  const sums: string[] = []
+  columns.forEach((column, index) => {
+    // 第一列返回合计
+    if (index === 0) {
+      sums[index] = '合计'
+      return
+    }
+
+    if (props.includes(column.property)) {
+      const values = data.map((item) => Number(item[column.property]))
+      if (!values.every((value) => Number.isNaN(value))) {
+        const total = `${values.reduce((prev, curr) => {
+          const value = Number(curr)
+          if (!Number.isNaN(value)) {
+            return prev + curr
+          } else {
+            return prev
+          }
+        }, 0)}`;
+        sums[index] = currency(total).format({ symbol: "¥" });
+      }
+    } else {
+      sums[index] = 'N/A';
+    }
+  });
+
+  return sums
+}

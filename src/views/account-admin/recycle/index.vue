@@ -9,6 +9,7 @@
       :request-api="getTableList"
       :isShowSearch="isShowTableHeaderBtn"
       :data-callback="dataCallback"
+      :summary-key="['accountRecyclerPrice']"
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="{ selectedListIds, isSelected }">
