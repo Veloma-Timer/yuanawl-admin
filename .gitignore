@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 electron-builder.yml
 electron-builder.json5
+release
 
 components.d.ts
 dist-electron
