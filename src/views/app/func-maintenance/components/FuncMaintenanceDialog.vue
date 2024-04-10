@@ -35,7 +35,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="关联页面" prop="pagePath">
-        <el-select-v2 v-model="drawerProps.row!.pagePath" :options="props.appPaths" placeholder="请选择" />
+        <el-select-v2 v-model="drawerProps.row!.pagePath" :options="drawerProps.app_paths" placeholder="请选择" />
       </el-form-item>
       <el-form-item label="图片" prop="picture">
         <div v-if="drawerProps.row.picture" class="relative">
@@ -73,11 +73,9 @@ import { ElMessage, FormInstance } from "element-plus";
 import { Close } from "@element-plus/icons-vue";
 import useUploader from "@/hooks/useUploader";
 import { OSS_PREFIX } from "@/config";
+import { Dict } from '@/typings/dict';
 import { App } from "@/typings/app";
-
-const props = defineProps<{
-  appPaths: { label: string; value: number }[];
-}>();
+import deepcopy from "deepcopy";
 
 const rules = {
   name: [{ required: true, message: "请输入名称" }],
@@ -88,6 +86,7 @@ const rules = {
 interface DrawerProps {
   title: string;
   isView: boolean;
+  app_paths: Dict.IDataItem[];
   row: Partial<App.IFuncMaintenanceInstance>;
   api?: (params: any) => Promise<any>;
   getTableList?: () => void;
@@ -98,11 +97,16 @@ const drawerVisible = ref(false);
 const drawerProps = ref<DrawerProps>({
   isView: false,
   title: "",
-  row: {}
+  row: {},
+  app_paths: []
 });
 // 接收父组件传过来的参数
 const acceptParams = (params: DrawerProps) => {
-  drawerProps.value = params;
+  const app_paths = deepcopy(params.app_paths).map(item => {
+    delete item.disabled;
+    return item;
+  });
+  drawerProps.value = {...params, app_paths};
   drawerVisible.value = true;
 };
 // 提交数据（新增/编辑）

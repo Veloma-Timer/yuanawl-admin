@@ -17,6 +17,7 @@ export namespace Dict {
     dictType: string; // 字典类型
     tagType: string;
     sort: number;
+    disabled?: Status;
     status: Status; // 系统字典 common_status '0' -> 停用 '1' -> 正常
     createdTime: string;
   }

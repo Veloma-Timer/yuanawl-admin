@@ -3,9 +3,7 @@
     <ProTable ref="proTable" title="功能维护" :columns="columns" :request-api="getTableList" :init-param="initParam">
       <!-- 表格 header 按钮 -->
       <template #tableHeader="{ selectedListIds }">
-        <el-button v-auth="'func-maintenance:add'" type="primary" :icon="Plus" @click="openDrawer('新增')"
-          >新增
-        </el-button>
+        <el-button v-auth="'func-maintenance:add'" type="primary" :icon="Plus" @click="openDrawer('新增')">新增 </el-button>
         <el-button
           v-auth="'func-maintenance:delete'"
           type="danger"
@@ -21,7 +19,7 @@
         <el-button v-auth="'func-maintenance:edit'" link :icon="Edit" @click="openDrawer('修改', scope.row)">修改</el-button>
       </template>
     </ProTable>
-    <FuncMaintenanceDialog :appPaths="appPaths" ref="dialogRef" />
+    <FuncMaintenanceDialog ref="dialogRef" />
   </div>
 </template>
 
@@ -29,10 +27,10 @@
 import { ColumnProps, ProTableInstance } from "@/components/ProTable/interface";
 import FuncMaintenanceDialog from "./components/FuncMaintenanceDialog.vue";
 import { Plus, Delete, Edit } from "@element-plus/icons-vue";
-import { getAppPaths } from "@/api/modules/app/yuanawlAdmin";
 import ProTable from "@/components/ProTable/index.vue";
 import { useHandleData } from "@/hooks/useHandleData";
 import { useDateFormat } from "@vueuse/core";
+import { useDict } from "@/hooks/useDict";
 import { App } from "@/typings/app";
 import { Status } from "@/typings";
 import deepcopy from "deepcopy";
@@ -63,7 +61,7 @@ const deleteFuncMaintenance = async (ids: (number | string)[]) => {
   proTable.value?.getTableList();
 };
 
-const appPaths = ref<{ label: string; value: number; path: string }[]>([]);
+const { app_paths } = useDict("app_paths");
 
 // 自定义渲染表头（使用tsx语法）
 // 表格配置项
@@ -100,13 +98,7 @@ const columns = computed<ColumnProps<App.IFuncMaintenanceInstance>[]>(() => {
     {
       prop: "pagePath",
       label: "关联页面",
-      enum: async () => {
-        const { data } = await getAppPaths();
-        appPaths.value = data.map(item => ({ ...item, label: item.name, value: item.path }));
-        return {
-          data: appPaths.value
-        };
-      },
+      enum: app_paths,
       search: {
         el: "select-v2",
         props: {
@@ -114,11 +106,11 @@ const columns = computed<ColumnProps<App.IFuncMaintenanceInstance>[]>(() => {
         }
       },
       render: ({ row }) => {
-        const path = appPaths.value.find(path => path.path == row.pagePath);
+        const path = app_paths.value.find(path => path.value == row.pagePath);
 
         return path ? (
           <div>
-            【{path?.label}】-{">"} {path?.path}
+            【{path?.label}】-{">"} {path?.value}
           </div>
         ) : (
           "--"
@@ -175,6 +167,7 @@ const openDrawer = (title: string, row: Partial<App.IFuncMaintenanceInstance> = 
     title,
     isView: title === "查看",
     row: { ...row },
+    app_paths: app_paths.value,
     api: title === "新增" ? addFuncMaintenanceItem : editFuncMaintenanceItem,
     getTableList: proTable.value?.getTableList
   };
